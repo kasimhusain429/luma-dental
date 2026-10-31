@@ -9,7 +9,8 @@ const TREATMENTS = [
   { id: 'whitening', label: '✨ Teeth Whitening' },
   { id: 'aligners', label: '🦷 Clear Aligners' },
   { id: 'implants', label: '💎 Dental Implants' },
-  { id: 'consult', label: '💬 Consultation' },
+  { id: 'veneers', label: '🪞 Porcelain Veneers' },
+  { id: 'consult', label: '💬 General Consultation' },
 ];
 
 const SLOTS = [
@@ -57,12 +58,13 @@ export default function BookingForm() {
         <div className="done-icon" aria-hidden="true">✓</div>
         <h3>Thank you — breathe easy.</h3>
         <p>
-          We’ve received your visit request. Our team will contact you within 2 business hours to confirm a quiet, unhurried time.
+          We've received your visit request. Our patient coordinator will contact you within 2 business hours to confirm a quiet, unhurried appointment time.
         </p>
         <div className="done-perks">
           <span>✓ Zero waiting room lag</span>
           <span>✓ Personalized care plan</span>
           <span>✓ Direct line to your doctor</span>
+          <span>✓ Insurance verified before your visit</span>
         </div>
       </div>
     );
@@ -154,13 +156,13 @@ export default function BookingForm() {
       {/* Optional Note */}
       <div className="field">
         <label htmlFor="message">
-          Anything we should know? <span>(dental anxiety, questions, preferences)</span>
+          Anything we should know? <span>(dental anxiety, questions, insurance provider)</span>
         </label>
         <textarea
           id="message"
           name="message"
           rows={3}
-          placeholder="I get nervous at the dentist / I'm interested in sedation / etc."
+          placeholder="I get nervous at the dentist / I'm interested in sedation / I have Delta Dental PPO / etc."
           maxLength={1000}
         />
       </div>
@@ -203,7 +205,11 @@ export default function BookingForm() {
         </div>
         <div className="trust-item">
           <span className="trust-check" aria-hidden="true">✓</span>
-          <span>Upfront transparent fee breakdown</span>
+          <span>Most insurance accepted</span>
+        </div>
+        <div className="trust-item">
+          <span className="trust-check" aria-hidden="true">✓</span>
+          <span>Upfront transparent pricing</span>
         </div>
       </div>
     </form>

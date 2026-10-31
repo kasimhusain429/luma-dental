@@ -3,7 +3,7 @@ import MoeStage from '@/components/MoeStage';
 import StoryDock from '@/components/StoryDock';
 import ScrollDriver from '@/components/ScrollDriver';
 import { MotionProvider } from '@/components/Reveal';
-import { Book, Calm, Craft, Footer, Hero, Treatments } from '@/components/Sections';
+import { Book, Calm, Craft, Footer, Hero, Team, Testimonials, Treatments } from '@/components/Sections';
 
 export default function Home() {
   return (
@@ -16,6 +16,8 @@ export default function Home() {
         <Calm />
         <Craft />
         <Treatments />
+        <Team />
+        <Testimonials />
         <Book />
       </main>
       <Footer />

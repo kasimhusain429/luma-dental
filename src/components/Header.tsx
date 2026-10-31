@@ -38,10 +38,18 @@ export default function Header() {
           <span className="dot" aria-hidden="true" />
           <Swap href="#treatments" from="Fear" to="Care" />
           <span className="dot" aria-hidden="true" />
+          <Swap href="#team" from="Strangers" to="Your Dentists" />
+          <span className="dot" aria-hidden="true" />
           <Swap href="#book" from="Hold Music" to="Calm" />
         </nav>
 
         <div className="header-right">
+          {site.phone && (
+            <a className="header-phone" href={`tel:${site.phone.replace(/\s+/g, '')}`} aria-label="Call us">
+              <span aria-hidden="true">📞</span>
+              <span>{site.phone}</span>
+            </a>
+          )}
           <a className="header-cta" href="#book">
             <span>Book Visit</span>
             <span aria-hidden="true" className="header-arrow">→</span>

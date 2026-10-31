@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
-import { site, hasAddress } from '@/lib/site';
+import { site, hasAddress, team, googleRating } from '@/lib/site';
 
 const serif = localFont({
   src: [
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.name,
   alternates: { canonical: '/' },
+  keywords: ['dentist', 'dental clinic', 'anxiety-free dentistry', 'teeth whitening', 'dental implants', 'clear aligners', 'cosmetic dentistry', 'San Francisco dentist', 'gentle dentistry'],
   openGraph: { type: 'website', siteName: site.name, title: `${site.name} — ${site.tagline}`, description: site.description, url: '/' },
   twitter: { card: 'summary_large_image', title: `${site.name} — ${site.tagline}`, description: site.description },
   robots: { index: true, follow: true },
@@ -38,6 +39,30 @@ function jsonLd() {
     name: site.name,
     url: site.url,
     description: site.description,
+    image: `${site.url}/opengraph-image`,
+    priceRange: '$$',
+    openingHoursSpecification: [
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '19:00' },
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '09:00', closes: '16:00' },
+    ],
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: googleRating.score,
+      reviewCount: googleRating.count,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Dental Services',
+      itemListElement: [
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Teeth Whitening' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Clear Aligners' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Dental Implants' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Cosmetic Dentistry' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'General Dentistry' } },
+      ],
+    },
   };
   if (site.phone) data.telephone = site.phone;
   if (site.email) data.email = site.email;
@@ -51,6 +76,15 @@ function jsonLd() {
       addressCountry: a.country || undefined,
     };
   }
+
+  // Add team members
+  data.employee = team.map((member) => ({
+    '@type': 'Person',
+    name: member.name,
+    jobTitle: member.role,
+    description: member.bio,
+  }));
+
   return JSON.stringify(data).replace(/</g, '\\u003c');
 }
 
